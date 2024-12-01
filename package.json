@@ -1,0 +1,61 @@
+{
+  "name": "@sktripamer/unifypass",
+  "version": "0.1.0",
+  "description": "Get Multipass instances with local domains on macOS in one command",
+  "main": "dns-server.js",
+  "bin": {
+    "unifypass": "./bin/cli.js"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "bin",
+    "dns-server.js",
+    "reverse-proxy.js",
+    "setup-resolver.js",
+    "config.js",
+    "templates",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "npm run dev:setup && npm run dev:start",
+    "dev:setup": "sudo node setup-resolver.js",
+    "dev:start": "sudo node dns-server.js & node reverse-proxy.js",
+    "dev:stop": "pkill -f dns-server.js && pkill -f reverse-proxy.js",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "author": "Scott Tripamer",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "dns2": "^2.1.0",
+    "pm2": "^5.3.0",
+    "sudo-prompt": "^9.2.1"
+  },
+  "keywords": [
+    "multipass",
+    "macOS",
+    "mac",
+    "local ip",
+    "local",
+    "development",
+    "dns",
+    "proxy"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sktripamer/unifypass.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sktripamer/unifypass/issues"
+  },
+  "homepage": "https://github.com/sktripamer/unifypass#readme",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "mock-fs": "^5.2.0",
+    "nock": "^13.3.8",
+    "supertest": "^6.3.3"
+  }
+}
